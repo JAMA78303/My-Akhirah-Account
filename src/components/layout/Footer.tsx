@@ -2,26 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useMemo } from "react";
 
 const footerLinks = {
-    organization: [
-        { href: "/about", label: "About Us" },
-        { href: "/team", label: "Our Team" },
+    about: [
+        { href: "/about", label: "About us" },
+        { href: "/team", label: "Our team" },
         { href: "/careers", label: "Careers" },
         { href: "/contact", label: "Contact" },
     ],
-    programs: [
-        { href: "/projects", label: "Our Projects" },
+    work: [
+        { href: "/projects", label: "What we do" },
         { href: "/events", label: "Events" },
-        { href: "/volunteer", label: "Volunteer" },
+        { href: "/blog", label: "News & stories" },
         { href: "/partners", label: "Partners" },
     ],
-    resources: [
-        { href: "/blog", label: "Blog" },
+    involved: [
+        { href: "/donate", label: "Donate" },
+        { href: "/volunteer", label: "Volunteer" },
+        { href: "/fundraise", label: "Fundraise" },
+        { href: "/zakat", label: "Zakat" },
+    ],
+    legal: [
+        { href: "/privacy", label: "Privacy" },
+        { href: "/terms", label: "Terms" },
         { href: "/faq", label: "FAQ" },
-        { href: "/privacy", label: "Privacy Policy" },
-        { href: "/terms", label: "Terms of Service" },
     ],
 };
 
@@ -36,6 +41,7 @@ export default function Footer() {
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
+    const startedAt = useMemo(() => Date.now().toString(), []);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -43,99 +49,128 @@ export default function Footer() {
         setErrorMessage("");
 
         try {
-            // Simulate API call - replace with actual newsletter subscription logic
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            const formData = new FormData();
+            formData.set("email", email);
+            formData.set("consentTextVersion", "v1");
+            formData.set("source", "footer");
+            formData.set("company", "");
+            formData.set("startedAt", startedAt);
+
+            const response = await fetch("/api/newsletter", {
+                method: "POST",
+                body: formData,
+            });
+            if (!response.ok) {
+                throw new Error("Failed to subscribe");
+            }
             setStatus("success");
             setEmail("");
-        } catch (error) {
+        } catch {
             setStatus("error");
             setErrorMessage("Failed to subscribe. Please try again.");
         }
     };
 
     return (
-        <footer className="bg-akhirah-teal text-white">
-            {/* Newsletter Section */}
-            <div className="bg-akhirah-teal/90 py-12">
-                <div className="container-custom">
-                    <div className="max-w-2xl mx-auto text-center">
-                        <h3 className="text-2xl font-bold mb-4">Stay Connected</h3>
-                        <p className="text-white/80 mb-6">
-                            Subscribe to our newsletter for updates on our projects, events, and ways to get involved.
-                        </p>
-                        <form 
-                            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" 
-                            onSubmit={handleSubmit}
-                            aria-label="Newsletter subscription form"
-                        >
-                            <div className="flex-1">
-                                <label htmlFor="newsletter-email" className="sr-only">
-                                    Email address
-                                </label>
-                                <input
-                                    id="newsletter-email"
-                                    type="email"
-                                    placeholder="Enter your email…"
-                                    className="w-full px-4 py-3 rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-eternal-gold"
-                                    required
-                                    autoComplete="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    disabled={status === "submitting"}
-                                    aria-describedby={status === "error" ? "newsletter-error" : undefined}
-                                    aria-invalid={status === "error"}
-                                />
+        <footer className="bg-akhirah-teal-dark text-purity-white">
+            <div className="border-b border-white/10">
+                <div className="container-custom max-w-full py-10 sm:py-12 md:py-14">
+                    <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-eternal-gold mb-4">
+                                Transparency & trust
+                            </p>
+                            <div className="grid grid-cols-3 gap-3 max-w-md">
+                                {["Governance", "Annual reports", "Safeguarding"].map((label) => (
+                                    <div
+                                        key={label}
+                                        className="aspect-[4/3] rounded-sm bg-white/5 border border-white/15 flex items-center justify-center text-center p-2"
+                                    >
+                                        <span className="text-[0.65rem] md:text-xs font-semibold text-white/80 leading-tight">
+                                            {label}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
-                            <button 
-                                type="submit" 
-                                className="btn btn-primary whitespace-nowrap"
-                                disabled={status === "submitting"}
-                                aria-busy={status === "submitting"}
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-bold mb-2">Newsletter</h3>
+                            <p className="text-white/75 text-sm mb-5 max-w-md">
+                                Occasional updates on impact, events, and ways to give with intention.
+                            </p>
+                            <form
+                                className="flex flex-col sm:flex-row gap-3 max-w-lg"
+                                onSubmit={handleSubmit}
+                                aria-label="Newsletter subscription form"
                             >
-                                {status === "submitting" ? "Subscribing…" : "Subscribe"}
-                            </button>
-                        </form>
-                        {status === "success" && (
-                            <p className="mt-3 text-sm text-green-300" role="status">
-                                Thank you for subscribing!
-                            </p>
-                        )}
-                        {status === "error" && (
-                            <p id="newsletter-error" className="mt-3 text-sm text-red-300" role="alert">
-                                {errorMessage}
-                            </p>
-                        )}
+                                <div className="flex-1">
+                                    <label htmlFor="newsletter-email" className="sr-only">
+                                        Email address
+                                    </label>
+                                    <input
+                                        id="newsletter-email"
+                                        type="email"
+                                        className="min-h-11 w-full px-4 py-3 text-base rounded-sm text-account-black focus:outline-none focus:ring-2 focus:ring-eternal-gold"
+                                        required
+                                        autoComplete="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        disabled={status === "submitting"}
+                                        aria-describedby={status === "error" ? "newsletter-error" : undefined}
+                                        aria-invalid={status === "error"}
+                                    />
+                                    <input type="hidden" name="company" value="" />
+                                    <input type="hidden" name="startedAt" value={startedAt} />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary whitespace-nowrap font-bold"
+                                    disabled={status === "submitting"}
+                                    aria-busy={status === "submitting"}
+                                >
+                                    {status === "submitting" ? "Subscribing…" : "Subscribe"}
+                                </button>
+                            </form>
+                            {status === "success" && (
+                                <p className="mt-3 text-sm text-mercy-mint" role="status">
+                                    Thank you for subscribing.
+                                </p>
+                            )}
+                            {status === "error" && (
+                                <p id="newsletter-error" className="mt-3 text-sm text-red-300" role="alert">
+                                    {errorMessage}
+                                </p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Main Footer */}
-            <div className="py-12">
-                <div className="container-custom">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                        {/* Brand Column */}
-                        <div className="col-span-2 md:col-span-1">
+            <div className="py-10 sm:py-12 md:py-14">
+                <div className="container-custom max-w-full">
+                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-5 lg:gap-8">
+                        <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[14rem]">
                             <Link href="/" className="inline-block mb-4">
                                 <Image
                                     src="/Logo Png White@3x.png"
                                     alt="My Akhirah Account"
-                                    width={80}
-                                    height={80}
-                                    className="h-16 w-auto"
+                                    width={72}
+                                    height={72}
+                                    className="h-14 w-auto"
                                 />
                             </Link>
-                            <p className="text-white/70 text-sm mb-4">
-                                Invest in your hereafter through charitable giving, community support, and spiritual growth.
+                            <p className="text-white/65 text-sm mb-5 leading-relaxed">
+                                Charitable giving, community, and growth rooted in faith.
                             </p>
-                            <div className="flex gap-3">
+                            <div className="flex flex-wrap gap-2">
                                 {socialLinks.map((social) => (
                                     <a
                                         key={social.icon}
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                                        className="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center hover:bg-eternal-gold hover:text-account-black transition-colors"
                                         aria-label={`${social.label} (opens in new tab)`}
                                     >
                                         <SocialIcon icon={social.icon} />
@@ -144,13 +179,17 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Organization Links */}
                         <div>
-                            <h4 className="font-bold mb-4 tracking-wide text-sm uppercase text-white/90">Organization</h4>
-                            <ul className="space-y-2">
-                                {footerLinks.organization.map((link) => (
+                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                About
+                            </h4>
+                            <ul className="space-y-2.5">
+                                {footerLinks.about.map((link) => (
                                     <li key={link.href}>
-                                        <Link href={link.href} className="text-white/70 hover:text-white text-sm transition-colors">
+                                        <Link
+                                            href={link.href}
+                                            className="text-white/70 hover:text-white text-sm transition-colors"
+                                        >
                                             {link.label}
                                         </Link>
                                     </li>
@@ -158,13 +197,17 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Programs Links */}
                         <div>
-                            <h4 className="font-bold mb-4 tracking-wide text-sm uppercase text-white/90">Programs</h4>
-                            <ul className="space-y-2">
-                                {footerLinks.programs.map((link) => (
+                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                What we do
+                            </h4>
+                            <ul className="space-y-2.5">
+                                {footerLinks.work.map((link) => (
                                     <li key={link.href}>
-                                        <Link href={link.href} className="text-white/70 hover:text-white text-sm transition-colors">
+                                        <Link
+                                            href={link.href}
+                                            className="text-white/70 hover:text-white text-sm transition-colors"
+                                        >
                                             {link.label}
                                         </Link>
                                     </li>
@@ -172,13 +215,35 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Resources Links */}
                         <div>
-                            <h4 className="font-bold mb-4 tracking-wide text-sm uppercase text-white/90">Resources</h4>
-                            <ul className="space-y-2">
-                                {footerLinks.resources.map((link) => (
+                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                Get involved
+                            </h4>
+                            <ul className="space-y-2.5">
+                                {footerLinks.involved.map((link) => (
                                     <li key={link.href}>
-                                        <Link href={link.href} className="text-white/70 hover:text-white text-sm transition-colors">
+                                        <Link
+                                            href={link.href}
+                                            className="text-white/70 hover:text-white text-sm transition-colors"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                Legal
+                            </h4>
+                            <ul className="space-y-2.5">
+                                {footerLinks.legal.map((link) => (
+                                    <li key={link.href}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-white/70 hover:text-white text-sm transition-colors"
+                                        >
                                             {link.label}
                                         </Link>
                                     </li>
@@ -187,8 +252,7 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Bottom Bar */}
-                    <div className="pt-8 border-t border-white/20 text-center text-sm text-white/60">
+                    <div className="pt-8 border-t border-white/15 text-center text-xs md:text-sm text-white/50">
                         <p>&copy; {new Date().getFullYear()} My Akhirah Account. All rights reserved.</p>
                     </div>
                 </div>

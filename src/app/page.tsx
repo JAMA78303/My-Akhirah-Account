@@ -5,135 +5,163 @@ import {
   SectionHeader,
   Banner,
   Stats,
+  EmergencyBar,
+  TrustSection,
+  GlobalReach,
   BlogCard,
   EventCard,
   ImpactCard,
   CampaignCard,
 } from "@/components";
 import {
-  mockBlogs,
-  mockEvents,
-  mockCampaigns,
-  mockImpacts,
-  mockStats,
+  mockTrustItems,
+  mockEmergencyFeatured,
+  mockEmergencySecondaryAppeals,
 } from "@/lib/mockData";
+import { getHomepageData } from "@/lib/server/homepage";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const homepage = await getHomepageData();
+  const supportBanner =
+    homepage.banners.find((b) => b.id === "support-palestine-sudan") ??
+    homepage.banners[0] ??
+    null;
+  const fundraiseBanner =
+    homepage.banners.find((b) => b.id === "collections") ?? null;
+  const storyBanner =
+    homepage.banners.find((b) => b.id === "our-story") ?? null;
+
   return (
     <>
-      <Header />
+      <Header transparentAtTop />
 
-      <main>
-        {/* Hero Section */}
+      <main className="min-w-0 flex-1">
         <Hero
-          title="Zakat is our Sacred Duty"
-          subtitle="Transform lives through the power of giving. Join us in building a better future for communities in need around the world."
-          ctaText="Donate Now"
-          ctaHref="/donate"
-          secondaryCtaText="Learn More"
-          secondaryCtaHref="/about"
-          backgroundImage="/hero-bg.jpg"
+          title={homepage.hero.title}
+          subtitle={homepage.hero.subtitle}
+          ctaText={homepage.hero.ctaText}
+          ctaHref={homepage.hero.ctaHref}
+          secondaryCtaText={homepage.hero.secondaryCtaText}
+          secondaryCtaHref={homepage.hero.secondaryCtaHref}
+          backgroundImage={homepage.hero.backgroundImage}
         />
 
-        {/* Stats Section */}
-        <Stats stats={mockStats} />
+        <Stats stats={homepage.stats} />
 
-        {/* Worldwide Resources Section */}
-        <section className="section bg-gray-50">
+        <EmergencyBar
+          featured={mockEmergencyFeatured}
+          secondaryAppeals={mockEmergencySecondaryAppeals}
+          secondarySectionTitle="Support current emergency appeals"
+        />
+
+        <section className="section bg-purity-white">
           <div className="container-custom">
             <SectionHeader
-              title="Worldwide Resources"
-              subtitle="Explore our educational content and inspiring stories from around the globe."
+              title="Latest updates"
+              subtitle="News, guides, and stories from our teams and partners."
               viewAllHref="/blog"
-              viewAllText="View All Articles"
+              viewAllText="View all articles"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockBlogs.map((blog) => (
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+              {homepage.posts.map((blog) => (
                 <BlogCard key={blog.id} {...blog} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Support Palestine Banner */}
-        <Banner
-          title="Support Palestine and Sudan"
-          description="Help provide urgent humanitarian aid to families affected by conflict. Your donation provides food, clean water, and medical supplies to those who need it most."
-          ctaText="Donate Now"
-          ctaHref="/campaigns/gaza-relief"
-          imageUrl="/hero-bg.jpg"
-          variant="gold"
-        />
+        {supportBanner ? (
+          <Banner
+            title={supportBanner.title}
+            description={supportBanner.description}
+            ctaText={supportBanner.ctaText}
+            ctaHref={supportBanner.ctaHref}
+            imageUrl={supportBanner.imageUrl}
+            variant={supportBanner.variant}
+          />
+        ) : null}
 
-        {/* Selected Sadaqah Types */}
-        <section className="section">
+        <section className="section bg-purity-white">
           <div className="container-custom">
             <SectionHeader
-              title="Selected Sadaqah Types"
-              subtitle="Choose how you want to make a difference in the world."
+              title="Where your giving goes"
+              subtitle="Choose a focus area — we handle diligence, delivery, and reporting."
               viewAllHref="/projects"
+              viewAllText="All programmes"
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {mockImpacts.map((impact) => (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+              {homepage.impacts.map((impact) => (
                 <ImpactCard key={impact.id} {...impact} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Upcoming Events */}
-        <section className="section bg-gray-50">
+        <section className="section bg-mercy-mint border-y border-akhirah-teal/10">
           <div className="container-custom">
             <SectionHeader
-              title="Upcoming Events"
-              subtitle="Join us at our upcoming gatherings and make a difference together."
+              title="Upcoming events"
+              subtitle="Meet the team, learn about Zakat, or volunteer for a distribution day."
               viewAllHref="/events"
-              viewAllText="See All Events"
+              viewAllText="See all events"
+              surface="mint"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockEvents.map((event) => (
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+              {homepage.events.map((event) => (
                 <EventCard key={event.id} {...event} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Why participate in collections banner */}
-        <Banner
-          title="Why Participate in Collections?"
-          description="Your contributions, no matter how small, create ripples of change across communities. Every pound raised goes directly towards transforming lives and supporting those in need."
-          ctaText="Start Fundraising"
-          ctaHref="/fundraise"
-          imageUrl="/hero-bg.jpg"
-          variant="secondary"
-        />
+        {fundraiseBanner ? (
+          <Banner
+            title={fundraiseBanner.title}
+            description={fundraiseBanner.description}
+            ctaText={fundraiseBanner.ctaText}
+            ctaHref={fundraiseBanner.ctaHref}
+            imageUrl={fundraiseBanner.imageUrl}
+            variant={fundraiseBanner.variant}
+          />
+        ) : null}
 
-        {/* Active Campaigns */}
-        <section className="section">
+        <section className="section bg-purity-white">
           <div className="container-custom">
             <SectionHeader
-              title="Support Our Upcoming Work"
-              subtitle="Help us reach our fundraising goals and create lasting impact."
+              title="Active appeals"
+              subtitle="Help us close the gap on programmes that are live right now."
               viewAllHref="/campaigns"
-              viewAllText="View All Campaigns"
+              viewAllText="View all campaigns"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockCampaigns.map((campaign) => (
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+              {homepage.campaigns.map((campaign) => (
                 <CampaignCard key={campaign.id} {...campaign} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Our Story Banner */}
-        <Banner
-          title="Our Story"
-          description="For over 15 years, My Akhirah Account has been dedicated to serving humanity and helping Muslims invest in their hereafter through meaningful charitable work."
-          ctaText="About Us"
-          ctaHref="/about"
-          imageUrl="/hero-bg.jpg"
-          variant="primary"
+        <TrustSection
+          title="Why donors trust us"
+          subtitle="Transparency, partnership, and care for every person we serve."
+          items={mockTrustItems}
         />
+
+        <GlobalReach
+          title="Global reach, local delivery"
+          subtitle="Programmes shaped with communities — not for them alone."
+        />
+
+        {storyBanner ? (
+          <Banner
+            title={storyBanner.title}
+            description={storyBanner.description}
+            ctaText={storyBanner.ctaText}
+            ctaHref={storyBanner.ctaHref}
+            imageUrl={storyBanner.imageUrl}
+            variant={storyBanner.variant}
+          />
+        ) : null}
       </main>
 
       <Footer />

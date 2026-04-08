@@ -27,7 +27,7 @@ A modern, beginner-friendly Next.js template designed for rapid web development 
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
+- [Bun](https://bun.sh/) (v1.0 or higher)
 - [Cursor IDE](https://cursor.sh/) (recommended)
 
 ### Installation
@@ -43,12 +43,12 @@ A modern, beginner-friendly Next.js template designed for rapid web development 
 
 3. **Install dependencies**
    ```bash
-   npm install
+   bun install
    ```
 
 4. **Start the development server**
    ```bash
-   npm run dev
+   bun run dev
    ```
 
 5. **Open Cursor Composer**
@@ -133,12 +133,12 @@ The `for-agent/` directory contains instructions that help the AI agent understa
 
 ### Build for Production
 ```bash
-npm run build
+bun run build
 ```
 
 ### Start Production Server
 ```bash
-npm start
+bun start
 ```
 
 The template is ready to deploy to Vercel, Netlify, or any other hosting platform that supports Next.js.

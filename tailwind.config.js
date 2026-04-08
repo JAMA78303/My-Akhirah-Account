@@ -9,9 +9,11 @@ export default {
     extend: {
       colors: {
         'akhirah-teal': '#045D56',
+        'akhirah-teal-dark': '#031f1d',
         'eternal-gold': '#F9AA27',
         'account-black': '#000000',
         'purity-white': '#FFFFFF',
+        'mercy-mint': '#e8f4f2',
       },
       fontFamily: {
         sans: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],

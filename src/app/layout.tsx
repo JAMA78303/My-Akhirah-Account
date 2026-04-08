@@ -22,10 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <head>
-        <meta name="theme-color" content="#045D56" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#031f1d" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-dvh min-h-screen flex-col overflow-x-clip">
         {children}
       </body>
     </html>
