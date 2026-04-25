@@ -24,7 +24,7 @@ If any command fails, install that tool before continuing.
 
 ## 2) Fork and Clone the Repository
 
-1. Open the main repository on GitHub.
+1. Open the main repository on GitHub: `https://github.com/mwijanarko1/My-Akhirah-Account`.
 2. Click **Fork** and create your own copy under your account.
 3. Clone your fork to your computer:
 
@@ -36,7 +36,7 @@ cd My-Akhirah-Account
 4. Add the original repository as `upstream` so you can pull latest changes:
 
 ```bash
-git remote add upstream https://github.com/<main-org-or-owner>/My-Akhirah-Account.git
+git remote add upstream https://github.com/mwijanarko1/My-Akhirah-Account.git
 git remote -v
 ```
 
