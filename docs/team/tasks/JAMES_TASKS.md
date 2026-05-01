@@ -22,15 +22,16 @@ Primary ownership: FAQ, footer, trust/safeguarding content, simple accessibility
 
 ## Week 1: FAQ and Footer
 
-- [ ] Update `src/components/layout/Footer.tsx` links and layout for desktop + mobile readability.
-- [ ] Update `src/components/sections/TrustSection.tsx` copy and structure for clear trust messaging.
-- [ ] Build `/faq` with sections for donations, receipts, Zakat/Sadaqah, volunteering, contact, and transparency.
-- [ ] Add at least 4 FAQ items per section using placeholder answers marked `TODO: Mikhail copy` where final copy is missing.
-- [ ] Add footer links for `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`, `/privacy-policy`, `/terms`, and `/safeguarding`.
-- [ ] Add a trust/safeguarding section below the FAQ that links to `/safeguarding`, `/contact`, and `/volunteer`.
-- [ ] Fix footer at 390px width so link groups stack cleanly, text does not overflow, and tap targets are at least 44px high.
-- [ ] Fix footer at 1440px width so link groups align consistently and no column has awkward wrapping.
-- [ ] Open a PR for FAQ and footer work.
+- [ ] Scope guard: Only execute Week 1 tasks in this cycle; do not start Week 2, Week 3, or Week 4 items yet.
+- [ ] Update `src/components/layout/Footer.tsx` links and layout for desktop + mobile readability, using existing design tokens only (`docs/DESIGN.md`: teal/gold/white palette, Montserrat, rounded-sm, and spacing scale).
+- [ ] Update `src/components/sections/TrustSection.tsx` copy and structure for clear trust messaging, with calm/trustworthy tone and accessible contrast per `docs/DESIGN.md`.
+- [ ] Build `/faq` with sections for donations, receipts, Zakat/Sadaqah, volunteering, contact, and transparency, following mobile-first layout and readable max-width guidance from `docs/DESIGN.md`.
+- [ ] Add at least 4 FAQ items per section using placeholder answers marked `TODO: Mikhail copy` where final copy is missing; keep copy specific, transparent, and warm (no exaggerated claims).
+- [ ] Add footer links for `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`, `/privacy-policy`, `/terms`, and `/safeguarding`, with consistent link labeling and hierarchy.
+- [ ] Add a trust/safeguarding section below the FAQ that links to `/safeguarding`, `/contact`, and `/volunteer`, styled as a clear trust surface aligned with existing card/button patterns.
+- [ ] Fix footer at 390px width so link groups stack cleanly, text does not overflow, and all interactive targets remain at least 44px high per design/accessibility guidance.
+- [ ] Fix footer at 1440px width so link groups align consistently, no column has awkward wrapping, and spacing rhythm follows the documented scale.
+- [ ] Open a PR for FAQ and footer work that states which `docs/DESIGN.md` rules were applied and includes mobile + desktop verification notes.
 
 ## Week 2: Donor Trust Content
 

@@ -9,25 +9,19 @@ const footerLinkGroups = [
         title: "Organisation",
         links: [
             { href: "/about", label: "About us" },
-            { href: "/contact", label: "Contact" },
-            { href: "/faq", label: "FAQ" },
-        ],
-    },
-    {
-        title: "Programmes",
-        links: [
             { href: "/campaigns", label: "Campaigns" },
             { href: "/programmes", label: "Programmes" },
-            { href: "/events", label: "Events" },
             { href: "/blog", label: "Blog" },
+            { href: "/events", label: "Events" },
         ],
     },
     {
-        title: "Get involved",
+        title: "Support",
         links: [
+            { href: "/faq", label: "FAQ" },
+            { href: "/contact", label: "Contact" },
             { href: "/volunteer", label: "Volunteer" },
             { href: "/newsletter", label: "Newsletter" },
-            { href: "/safeguarding", label: "Safeguarding" },
         ],
     },
     {
@@ -35,6 +29,7 @@ const footerLinkGroups = [
         links: [
             { href: "/privacy-policy", label: "Privacy policy" },
             { href: "/terms", label: "Terms" },
+            { href: "/safeguarding", label: "Safeguarding" },
         ],
     },
 ] as const;
@@ -158,7 +153,7 @@ export default function Footer() {
 
             <div className="py-10 sm:py-12 md:py-14">
                 <div className="container-custom max-w-full">
-                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-[minmax(0,1.15fr)_repeat(4,minmax(0,1fr))] lg:items-start lg:gap-8">
+                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-[minmax(0,1.15fr)_repeat(3,minmax(0,1fr))] lg:items-start lg:gap-8">
                         <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[16rem]">
                             <Link href="/" className="inline-block mb-4">
                                 <Image
@@ -167,6 +162,7 @@ export default function Footer() {
                                     width={72}
                                     height={72}
                                     className="h-14 w-auto"
+                                    unoptimized
                                 />
                             </Link>
                             <p className="text-white/65 text-sm mb-5 leading-relaxed">
@@ -190,16 +186,13 @@ export default function Footer() {
 
                         {footerLinkGroups.map((group) => (
                             <div key={group.title}>
-                                <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                <h4 className="font-semibold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
                                     {group.title}
                                 </h4>
                                 <ul className="space-y-1.5">
                                     {group.links.map((link) => (
                                         <li key={link.href}>
-                                            <Link
-                                                href={link.href}
-                                                className="flex min-h-11 items-center text-white/75 hover:text-white text-sm transition-colors"
-                                            >
+                                            <Link href={link.href} className="flex min-h-11 items-center text-white hover:text-eternal-gold text-sm font-normal transition-colors">
                                                 {link.label}
                                             </Link>
                                         </li>

@@ -17,12 +17,11 @@ const faqSections: FaqSection[] = [
   {
     id: "donations",
     title: "Donations",
-    intro: "How donations work on our platform and what to expect after checkout.",
+    intro: "Everything you need to know about giving through My Akhirah Account.",
     items: [
       {
         question: "How do I make a donation?",
-        answer:
-          "Choose an appeal, select an amount, and complete checkout with your preferred payment method.",
+        answer: "TODO: Mikhail copy",
       },
       {
         question: "Can I make a one-off or recurring donation?",
@@ -34,21 +33,21 @@ const faqSections: FaqSection[] = [
       },
       {
         question: "Is my payment secure?",
-        answer: "Donations are processed through secure payment flows with encrypted transmission.",
+        answer: "TODO: Mikhail copy",
       },
     ],
   },
   {
     id: "receipts",
     title: "Receipts",
-    intro: "Information on confirmations, receipts, and records for your giving.",
+    intro: "Clear records of your giving, honouring the amanah of every donation.",
     items: [
       {
         question: "Will I receive a donation receipt?",
-        answer: "Yes, a confirmation is sent after a successful donation.",
+        answer: "TODO: Mikhail copy",
       },
       {
-        question: "How long does it take to receive the receipt?",
+        question: "How long does it take to receive my receipt?",
         answer: "TODO: Mikhail copy",
       },
       {
@@ -56,30 +55,31 @@ const faqSections: FaqSection[] = [
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Who should I contact about a receipt error?",
-        answer: "Please use the contact page so our team can review and correct the record.",
+        question: "There is an error on my receipt — what should I do?",
+        answer: "TODO: Mikhail copy",
       },
     ],
   },
   {
     id: "zakat-sadaqah",
-    title: "Zakat and Sadaqah",
-    intro: "Guidance on giving types and how funds are handled responsibly.",
+    title: "Zakat & Sadaqah",
+    intro:
+      "Your intention matters. We treat every donation as an amanah — a trust placed in our hands — and handle Zakat and Sadaqah with the care and accountability they deserve.",
     items: [
       {
         question: "Do you accept both Zakat and Sadaqah?",
-        answer: "Yes, you can give either Zakat or Sadaqah depending on your intention.",
-      },
-      {
-        question: "How do you keep Zakat funds separate where required?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Can I add a note to say my donation is Zakat?",
+        question: "How do you ensure Zakat funds are used correctly?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Do you provide guidance on Zakat eligibility?",
+        question: "Can I specify that my donation is Zakat?",
+        answer: "TODO: Mikhail copy",
+      },
+      {
+        question: "What is Sadaqah Jariyah and can I give it through your platform?",
         answer: "TODO: Mikhail copy",
       },
     ],
@@ -87,18 +87,18 @@ const faqSections: FaqSection[] = [
   {
     id: "volunteering",
     title: "Volunteering",
-    intro: "How to get involved, safeguarding checks, and expectations for volunteers.",
+    intro: "Giving your time is a form of sadaqah. Here is how to get involved.",
     items: [
       {
         question: "How do I register as a volunteer?",
-        answer: "Use the volunteer form and our team will follow up with next steps.",
-      },
-      {
-        question: "Do all volunteer roles require checks?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Will volunteers receive onboarding guidance?",
+        question: "Do all volunteer roles require background checks?",
+        answer: "TODO: Mikhail copy",
+      },
+      {
+        question: "Do I need experience to volunteer?",
         answer: "TODO: Mikhail copy",
       },
       {
@@ -110,46 +110,46 @@ const faqSections: FaqSection[] = [
   {
     id: "contact",
     title: "Contact",
-    intro: "The best ways to get support for donations, volunteering, and safeguarding concerns.",
+    intro: "We are here to help. Please reach out and we will respond with care.",
     items: [
       {
         question: "How do I contact your team?",
-        answer: "Use our contact page and include enough detail so we can help quickly.",
-      },
-      {
-        question: "What details should I include in my message?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "How quickly do you respond?",
+        question: "Can I raise a concern about how a donation was used?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Can I report an urgent safeguarding concern?",
-        answer: "Yes. Please contact us immediately through the safeguarding and contact channels.",
+        question: "How quickly will you respond?",
+        answer: "TODO: Mikhail copy",
+      },
+      {
+        question: "How do I report an urgent safeguarding concern?",
+        answer: "TODO: Mikhail copy",
       },
     ],
   },
   {
     id: "transparency",
     title: "Transparency",
-    intro: "How we communicate delivery, partners, and impact to build donor confidence.",
+    intro: "We believe donors deserve to know exactly how their trust is being honoured.",
     items: [
       {
         question: "How do you decide which projects to fund?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Do you share updates on where funds are used?",
-        answer: "Yes, we share updates as campaigns and programmes progress.",
-      },
-      {
-        question: "How do you vet partner organisations?",
+        question: "How do you keep donors informed about where funds go?",
         answer: "TODO: Mikhail copy",
       },
       {
-        question: "Where can I read more about your safeguarding approach?",
-        answer: "Visit the safeguarding page for policies and reporting routes.",
+        question: "How do you vet partner organisations on the ground?",
+        answer: "TODO: Mikhail copy",
+      },
+      {
+        question: "Where can I read about your safeguarding approach?",
+        answer: "TODO: Mikhail copy",
       },
     ],
   },
@@ -164,9 +164,7 @@ export default function FaqPage() {
           <div className="container-custom max-w-full py-14 sm:py-16 md:py-20">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-wider text-eternal-gold mb-3">Support</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance mb-4">
-                Frequently asked questions
-              </h1>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance mb-4">Frequently Asked Questions</h1>
               <p className="text-white/85 text-base sm:text-lg leading-relaxed">
                 Clear answers on donations, receipts, Zakat and Sadaqah, volunteering, contact routes, and how we
                 protect your trust.
@@ -178,17 +176,29 @@ export default function FaqPage() {
         <section className="section bg-purity-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 gap-6 lg:gap-8">
-              {faqSections.map((section) => (
-                <article key={section.id} id={section.id} className="rounded-sm border border-akhirah-teal/15 p-5 sm:p-6 md:p-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-account-black mb-2">{section.title}</h2>
+              {faqSections.map((section, index) => (
+                <article
+                  key={section.id}
+                  id={section.id}
+                  className={`rounded-sm border border-akhirah-teal/15 p-5 sm:p-6 md:p-8 ${index % 2 === 1 ? "bg-mercy-mint/40" : "bg-purity-white"}`}
+                >
+                  <h2 className="text-2xl sm:text-3xl font-bold text-akhirah-teal mb-2">{section.title}</h2>
                   <p className="text-account-black/75 text-sm sm:text-base mb-6">{section.intro}</p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                     {section.items.map((item) => (
-                      <div key={item.question} className="rounded-sm border border-akhirah-teal/10 bg-mercy-mint/35 p-4 sm:p-5">
-                        <h3 className="text-base sm:text-lg font-semibold text-account-black mb-2">{item.question}</h3>
-                        <p className="text-account-black/80 text-sm sm:text-base leading-relaxed">{item.answer}</p>
-                      </div>
+                      <details key={item.question} className="group rounded-sm border border-akhirah-teal/15 bg-purity-white p-4 sm:p-5">
+                        <summary className="min-h-11 cursor-pointer list-none pr-7 text-base sm:text-lg font-semibold text-account-black relative">
+                          {item.question}
+                          <span className="absolute right-0 top-0 text-akhirah-teal/70 group-open:hidden" aria-hidden>
+                            +
+                          </span>
+                          <span className="absolute right-0 top-0 hidden text-akhirah-teal/70 group-open:inline" aria-hidden>
+                            −
+                          </span>
+                        </summary>
+                        <p className="mt-3 text-account-black/80 text-sm sm:text-base leading-relaxed">{item.answer}</p>
+                      </details>
                     ))}
                   </div>
                 </article>
@@ -197,23 +207,23 @@ export default function FaqPage() {
           </div>
         </section>
 
-        <section className="section bg-mercy-mint border-y border-akhirah-teal/10">
+        <section className="section bg-akhirah-teal">
           <div className="container-custom">
-            <div className="max-w-4xl rounded-sm border border-akhirah-teal/15 bg-purity-white p-5 sm:p-6 md:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-account-black mb-3">Trust and safeguarding support</h2>
-              <p className="text-account-black/80 text-sm sm:text-base leading-relaxed mb-6">
-                If you need to raise a concern, ask for support, or join our safeguarding-first volunteer pathways,
-                please use the routes below.
+            <div className="max-w-4xl rounded-sm border border-white/15 bg-white/5 p-5 sm:p-6 md:p-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-purity-white mb-3">Trust and safeguarding support</h2>
+              <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-6">
+                We are committed to responsible stewardship, clear accountability, and safe reporting routes for every
+                supporter, volunteer, and beneficiary.
               </p>
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
-                <Link href="/safeguarding" className="btn btn-secondary inline-flex items-center justify-center min-h-11">
-                  Safeguarding
+                <Link href="/safeguarding" className="inline-flex min-h-11 items-center justify-center rounded-sm border border-white/30 px-4 py-2 text-purity-white hover:text-eternal-gold hover:border-eternal-gold transition-colors">
+                  Safeguarding Policy
                 </Link>
-                <Link href="/contact" className="btn btn-secondary inline-flex items-center justify-center min-h-11">
-                  Contact
+                <Link href="/contact" className="inline-flex min-h-11 items-center justify-center rounded-sm border border-white/30 px-4 py-2 text-purity-white hover:text-eternal-gold hover:border-eternal-gold transition-colors">
+                  Contact Us
                 </Link>
-                <Link href="/volunteer" className="btn btn-primary inline-flex items-center justify-center min-h-11">
-                  Volunteer
+                <Link href="/volunteer" className="inline-flex min-h-11 items-center justify-center rounded-sm border border-white/30 px-4 py-2 text-purity-white hover:text-eternal-gold hover:border-eternal-gold transition-colors">
+                  Volunteer With Us
                 </Link>
               </div>
             </div>
