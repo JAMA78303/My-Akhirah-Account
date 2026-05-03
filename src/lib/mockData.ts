@@ -183,16 +183,16 @@ export const mockImpacts = [
 
 export const mockTrustItems = [
     {
-        title: "Governance you can trace",
-        description: "Clear policies, published reports, and accountable decision-making.",
+        title: "Transparent giving",
+        description: "We publish what we fund, where programmes run, and how donations are allocated.",
     },
     {
-        title: "Partners who share our values",
-        description: "We work with vetted local organisations and global networks.",
+        title: "Local delivery",
+        description: "We work with vetted partners on the ground so aid reaches people quickly and safely.",
     },
     {
-        title: "Safeguarding first",
-        description: "Training, reporting routes, and vetting for everyone who represents us.",
+        title: "Receipts and updates",
+        description: "Donors receive confirmations and regular updates as campaigns and programmes progress.",
     },
 ];
 
