@@ -21,15 +21,25 @@ export default function TrustSection({ title, subtitle, items }: TrustSectionPro
                         <p className="text-white/85 text-sm sm:text-base md:text-lg">{subtitle}</p>
                     )}
                 </div>
+                <div className="mx-auto mb-8 max-w-4xl rounded-sm border border-white/20 bg-white/5 p-5 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-semibold text-eternal-gold mb-2">
+                        Amanah in every donation
+                    </h3>
+                    <p className="text-sm sm:text-base text-white/85 leading-relaxed">
+                        We treat your trust as an amanah. Zakat and Sadaqah are handled with clear governance,
+                        accountable partners, and visible delivery updates across our African charity work so donors can
+                        see real outcomes with confidence.
+                    </p>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-                    {items.map((item) => (
+                    {items.map((item, index) => (
                         <div
                             key={item.title}
-                            className="min-w-0 bg-purity-white text-account-black p-5 sm:p-6 md:p-8 rounded-sm border border-white/10 shadow-sm"
+                            className="min-w-0 bg-purity-white text-account-black p-5 sm:p-6 md:p-8 rounded-sm border border-white/10"
                         >
                             <div className="h-11 w-11 sm:h-12 sm:w-12 rounded-sm bg-mercy-mint border border-akhirah-teal/15 mb-3 sm:mb-4 flex items-center justify-center shrink-0">
                                 <span className="text-akhirah-teal font-bold text-base sm:text-lg" aria-hidden>
-                                    ✓
+                                    {index + 1}
                                 </span>
                             </div>
                             <h3 className="font-bold text-base sm:text-lg mb-2 text-balance">{item.title}</h3>

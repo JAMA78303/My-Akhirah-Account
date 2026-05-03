@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import NewsletterSubscribeForm from "@/components/forms/NewsletterSubscribeForm";
 
 /** Aligned with `docs/team/tasks/navigation-map.md` */
@@ -25,7 +26,7 @@ const footerLinks = {
         { href: "/terms", label: "Terms" },
         { href: "/faq", label: "FAQ" },
     ],
-};
+} as const;
 
 const transparencyTiles = [
     { href: "/privacy", label: "Governance" },
@@ -40,6 +41,13 @@ const socialLinks = [
     { href: "https://youtube.com", label: "YouTube", icon: "youtube" },
 ];
 
+const footerColumns: { title: string; links: readonly { href: string; label: string }[] }[] = [
+    { title: "Discover", links: footerLinks.discover },
+    { title: "Organisation", links: footerLinks.organisation },
+    { title: "Get involved", links: footerLinks.involved },
+    { title: "Legal", links: footerLinks.legal },
+];
+
 export default function Footer() {
     return (
         <footer className="bg-akhirah-teal-dark text-purity-white">
@@ -50,7 +58,7 @@ export default function Footer() {
                             <p className="text-xs font-semibold uppercase tracking-wider text-eternal-gold mb-4">
                                 Transparency & trust
                             </p>
-                            <div className="grid grid-cols-3 gap-3 max-w-md">
+                            <div className="grid grid-cols-2 gap-3 max-w-md sm:grid-cols-3">
                                 {transparencyTiles.map((tile) => (
                                     <Link
                                         key={tile.href + tile.label}
@@ -77,8 +85,8 @@ export default function Footer() {
 
             <div className="py-10 sm:py-12 md:py-14">
                 <div className="container-custom max-w-full">
-                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-5 lg:gap-8">
-                        <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[14rem]">
+                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-[minmax(0,1.15fr)_repeat(3,minmax(0,1fr))] lg:items-start lg:gap-8">
+                        <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[16rem]">
                             <Link href="/" className="inline-block mb-4">
                                 <Image
                                     src="/Logo Png White@3x.png"
@@ -86,6 +94,7 @@ export default function Footer() {
                                     width={72}
                                     height={72}
                                     className="h-14 w-auto"
+                                    unoptimized
                                 />
                             </Link>
                             <p className="text-white/65 text-sm mb-5 leading-relaxed">
@@ -98,7 +107,7 @@ export default function Footer() {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center hover:bg-eternal-gold hover:text-account-black transition-colors"
+                                        className="h-11 w-11 rounded-sm bg-white/10 flex items-center justify-center hover:bg-eternal-gold hover:text-account-black transition-colors"
                                         aria-label={`${social.label} (opens in new tab)`}
                                     >
                                         <SocialIcon icon={social.icon} />
@@ -107,77 +116,25 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Discover
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.discover.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Organisation
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.organisation.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Get involved
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.involved.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Legal
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.legal.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {footerColumns.map((column) => (
+                            <div key={column.title}>
+                                <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                    {column.title}
+                                </h4>
+                                <ul className="space-y-1.5">
+                                    {column.links.map((link) => (
+                                        <li key={`${column.title}-${link.href}-${link.label}`}>
+                                            <Link
+                                                href={link.href}
+                                                className="flex min-h-11 items-center text-white/70 hover:text-white text-sm transition-colors"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="pt-8 border-t border-white/15 text-center text-xs md:text-sm text-white/50">
@@ -190,7 +147,7 @@ export default function Footer() {
 }
 
 function SocialIcon({ icon }: { icon: string }) {
-    const icons: Record<string, React.ReactNode> = {
+    const icons: Record<string, ReactNode> = {
         facebook: (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
