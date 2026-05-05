@@ -5,46 +5,46 @@ Primary ownership: public route structure, navigation clarity, policy/about/prog
 
 ## Shared Product Contract
 
-- [ ] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
-- [ ] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
-- [ ] Point every donation CTA to the destination approved by Mikhail.
-- [ ] Do not change payment provider, Convex, Clerk/auth, or admin files.
-- [ ] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
+- [x] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
+- [x] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
+- [x] Point every donation CTA to the destination approved by Mikhail.
+- [x] Do not change payment provider, Convex, Clerk/auth, or admin files.
+- [x] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
 
 ## Setup Checklist
 
-- [ ] Read `README.md`.
-- [ ] Read `docs/CODEBASE_MAP.md`.
-- [ ] Pull the latest `main` branch before starting work.
-- [ ] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
+- [x] Read `README.md`.
+- [x] Read `docs/CODEBASE_MAP.md`.
+- [x] Pull the latest `main` branch before starting work.
+- [x] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
 - [ ] Confirm you can run `bun run build`.
-- [ ] Do not change payment provider code.
-- [ ] Do not change Convex code.
-- [ ] Do not change Clerk or authentication code.
+- [x] Do not change payment provider code.
+- [x] Do not change Convex code.
+- [x] Do not change Clerk or authentication code.
 
 ## Week 1: Public Structure Planning
 
 - [ ] Create `docs/team/tasks/navigation-map.md` with the final homepage section order to ship.
-- [ ] List every header nav item with its destination URL and fix wrong or missing links.
-- [ ] List every footer nav item with its destination URL and fix wrong or missing links.
-- [ ] Map required public routes: home, about, campaigns, programmes, blog, events, FAQ, contact, volunteer, newsletter, and policies.
-- [ ] Add missing public links for required routes (about, campaigns, programmes, blog, events, FAQ, contact, volunteer, newsletter, policies).
-- [ ] Rename confusing navigation labels to clear user-facing wording.
+- [x] List every header nav item with its destination URL and fix wrong or missing links.
+- [x] List every footer nav item with its destination URL and fix wrong or missing links.
+- [x] Map required public routes: home, about, campaigns, programmes, blog, events, FAQ, contact, volunteer, newsletter, and policies.
+- [x] Add missing public links for required routes (about, campaigns, programmes, blog, events, FAQ, contact, volunteer, newsletter, policies).
+- [x] Rename confusing navigation labels to clear user-facing wording.
 - [ ] Add final menu labels and route map to `docs/team/tasks/navigation-map.md`.
 - [ ] Add policy page content requirements to `docs/team/tasks/navigation-map.md`, including required pages and missing copy from Mikhail.
-- [ ] Open a PR only for public navigation or layout changes.
+- [x] Open a PR only for public navigation or layout changes.
 
 ## Week 2: Public Layout and Content Organization
 
-- [ ] Update header/footer labels so the same route has the same label everywhere.
-- [ ] Create or update one reusable page layout pattern for intro, body sections, and CTA footer.
+- [x] Update header/footer labels so the same route has the same label everywhere.
+- [x] Create or update one reusable page layout pattern for intro, body sections, and CTA footer.
 - [ ] Build/fix about page section structure so intro, mission, and key content blocks are clearly separated.
 - [ ] Build/fix programme page structure with clear section headings and scannable content grouping.
 - [ ] Build/fix policy page structure with consistent heading levels and readable section spacing.
 - [ ] Build/fix contact page layout with clear contact options and form placement.
-- [ ] Rewrite unclear link labels so each link states destination intent.
-- [ ] Fix heading hierarchy so each page has one `<h1>` and logical `<h2>/<h3>` order.
-- [ ] Open a PR for public structure and content organization.
+- [x] Rewrite unclear link labels so each link states destination intent.
+- [x] Fix heading hierarchy so each page has one `<h1>` and logical `<h2>/<h3>` order.
+- [x] Open a PR for public structure and content organization.
 
 ## Week 3: Form UX and Cross-Page QA
 

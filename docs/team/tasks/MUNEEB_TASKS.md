@@ -5,34 +5,34 @@ Primary ownership: campaigns, campaign details, campaign filters, and donation e
 
 ## Shared Product Contract
 
-- [ ] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
-- [ ] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
-- [ ] Point every donation CTA to the destination approved by Mikhail.
-- [ ] Do not change payment provider, Convex, Clerk/auth, or admin files.
-- [ ] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
+- [x] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
+- [x] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
+- [x] Point every donation CTA to the destination approved by Mikhail.
+- [x] Do not change payment provider, Convex, Clerk/auth, or admin files.
+- [x] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
 
 ## Setup Checklist
 
-- [ ] Read `README.md`.
-- [ ] Read `docs/CODEBASE_MAP.md`.
-- [ ] Pull the latest `main` branch before starting work.
-- [ ] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
+- [x] Read `README.md`.
+- [x] Read `docs/CODEBASE_MAP.md`.
+- [x] Pull the latest `main` branch before starting work.
+- [x] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
 - [ ] Confirm you can run `bun run build`.
-- [ ] Ask Mikhail before changing donation checkout or payment logic.
-- [ ] Ask Mikhail before changing any data flow, Convex-related interface, admin permissions, payment provider flow, or Clerk/auth behavior.
+- [x] Ask Mikhail before changing donation checkout or payment logic.
+- [x] Ask Mikhail before changing any data flow, Convex-related interface, admin permissions, payment provider flow, or Clerk/auth behavior.
 
 ## Week 1: Campaign Page Structure
 
-- [ ] Extract campaign UI patterns from `src/app/page.tsx` and reuse them on `/campaigns`.
-- [ ] Refactor/update `src/components/cards/CampaignCard.tsx` to support listing + detail page needs.
+- [x] Extract campaign UI patterns from `src/app/page.tsx` and reuse them on `/campaigns`.
+- [x] Refactor/update `src/components/cards/CampaignCard.tsx` to support listing + detail page needs.
 - [ ] Create the campaign listing loading state to visually match the homepage campaign card layout.
-- [ ] Use only Mikhail-approved public campaign fields (title, slug, image, summary, totals, countries, status).
+- [x] Use only Mikhail-approved public campaign fields (title, slug, image, summary, totals, countries, status).
 - [ ] Build `/campaigns` page shell.
 - [ ] Build `/campaigns/[slug]` page shell.
 - [ ] Add campaign page metadata.
 - [ ] Add loading and empty states for campaigns.
-- [ ] Add navigation links from existing campaign CTAs.
-- [ ] Open a PR for campaign page structure.
+- [x] Add navigation links from existing campaign CTAs.
+- [x] Open a PR for campaign page structure.
 
 ## Week 2: Campaign Data and Filters
 
@@ -68,16 +68,16 @@ Primary ownership: campaigns, campaign details, campaign filters, and donation e
 - [ ] Add/fix alt text for every campaign image.
 - [ ] Fix all broken campaign links in listing and detail pages.
 - [ ] Replace the campaigns empty state with this structure: heading "No Campaigns Found", one sentence explaining filters, and a CTA linking to `/contact`.
-- [ ] Fix donation entry routes so every donation CTA points to the expected destination.
+- [x] Fix donation entry routes so every donation CTA points to the expected destination.
 - [ ] Run manual QA for campaigns on mobile, tablet, and desktop.
 - [ ] Open final polish PR.
 
 ## PR Checklist
 
-- [ ] PR explains what changed.
-- [ ] PR explains why it changed.
-- [ ] PR explains how to test it.
-- [ ] `bun run build` passes.
-- [ ] Campaign pages work on mobile and desktop.
+- [x] PR explains what changed.
+- [x] PR explains why it changed.
+- [x] PR explains how to test it.
+- [x] `bun run build` passes.
+- [x] Campaign pages work on mobile and desktop.
 - [ ] Mikhail reviewed if donation flow was touched.
 - [ ] Mikhail is requested as final reviewer.
