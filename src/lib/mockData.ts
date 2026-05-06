@@ -142,57 +142,57 @@ export const mockImpacts = [
         imageUrl: img,
         stat: "2.1M",
         statLabel: "Litres/day capacity",
-        href: "/projects/water",
+        href: "/programmes/water",
     },
     {
         id: "i2",
         title: "Food security",
         description: "Hot meals, parcels, and agricultural support where hunger bites hardest.",
         imageUrl: img,
-        href: "/projects/food",
+        href: "/programmes/food",
     },
     {
         id: "i3",
         title: "Health & clinics",
         description: "Mobile clinics, vaccines, and maternal health services.",
         imageUrl: img,
-        href: "/projects/health",
+        href: "/programmes/health",
     },
     {
         id: "i4",
         title: "Education",
         description: "Schools, supplies, and scholarships so children keep learning.",
         imageUrl: img,
-        href: "/projects/education",
+        href: "/programmes/education",
     },
     {
         id: "i5",
         title: "Shelter & recovery",
         description: "Temporary shelter, repairs, and cash assistance after emergencies.",
         imageUrl: img,
-        href: "/projects/shelter",
+        href: "/programmes/shelter",
     },
     {
         id: "i6",
         title: "Livelihoods",
         description: "Skills training, tools, and small grants to rebuild income.",
         imageUrl: img,
-        href: "/projects/livelihoods",
+        href: "/programmes/livelihoods",
     },
 ];
 
 export const mockTrustItems = [
     {
-        title: "Governance you can trace",
-        description: "Clear policies, published reports, and accountable decision-making.",
+        title: "Transparent giving",
+        description: "We publish what we fund, where programmes run, and how donations are allocated.",
     },
     {
-        title: "Partners who share our values",
-        description: "We work with vetted local organisations and global networks.",
+        title: "Local delivery",
+        description: "We work with vetted partners on the ground so aid reaches people quickly and safely.",
     },
     {
-        title: "Safeguarding first",
-        description: "Training, reporting routes, and vetting for everyone who represents us.",
+        title: "Receipts and updates",
+        description: "Donors receive confirmations and regular updates as campaigns and programmes progress.",
     },
 ];
 

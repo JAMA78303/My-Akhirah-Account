@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+/** Aligned with `docs/team/tasks/navigation-map.md` and Khalid shared route set */
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -13,6 +14,8 @@ const navLinks = [
     { href: "/events", label: "Events" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
+    { href: "/volunteer", label: "Volunteer" },
+    { href: "/newsletter", label: "Newsletter" },
 ];
 
 export interface HeaderProps {
@@ -128,14 +131,14 @@ export default function Header({ transparentAtTop = false }: HeaderProps) {
                         </Link>
 
                         <nav
-                            className="hidden min-w-0 lg:flex items-center gap-4 xl:gap-6 2xl:gap-7 px-1 xl:px-2"
+                            className="hidden min-w-0 lg:flex lg:flex-wrap lg:justify-end items-center gap-x-2.5 gap-y-2 xl:gap-x-4 2xl:gap-x-5 px-1 xl:px-2 max-w-[52rem] 2xl:max-w-none"
                             aria-label="Main navigation"
                         >
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="whitespace-nowrap text-[0.8125rem] font-semibold text-white/95 xl:text-sm hover:text-eternal-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eternal-gold"
+                                    className="whitespace-nowrap text-[0.7rem] font-semibold text-white/95 sm:text-[0.75rem] xl:text-[0.8125rem] hover:text-eternal-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eternal-gold"
                                 >
                                     {link.label}
                                 </Link>

@@ -13,55 +13,55 @@ Primary ownership: all payment providers, Convex, Clerk, authentication, admin a
 
 ## Setup Checklist
 
-- [ ] Read `README.md`.
-- [ ] Read `docs/CODEBASE_MAP.md`.
-- [ ] Confirm the internship route map and ownership plan.
+- [x] Read `README.md`.
+- [x] Read `docs/CODEBASE_MAP.md`.
+- [x] Confirm the internship route map and ownership plan.
 - [ ] Confirm all interns have access to the repo.
 - [ ] Confirm no intern receives production secrets.
 - [ ] Confirm sandbox credentials are available for local payment testing.
 - [ ] Confirm branch protection and PR review rules are set on GitHub.
-- [ ] Confirm all Convex changes are owned by Mikhail.
-- [ ] Confirm all Clerk changes are owned by Mikhail.
-- [ ] Confirm all payment provider changes are owned by Mikhail.
+- [x] Confirm all Convex changes are owned by Mikhail.
+- [x] Confirm all Clerk changes are owned by Mikhail.
+- [x] Confirm all payment provider changes are owned by Mikhail.
 
 ## Week 1: Critical Flow Decisions
 
-- [ ] Write the exact donation checkout flow in `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add required donation fields to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add supported launch currencies to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add supported giving types to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add campaign/fund selection behavior to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add fee coverage behavior to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add anonymous donation behavior to `docs/project/PAYMENTS_PLAN.md`.
-- [ ] Add donor message behavior to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Write the exact donation checkout flow in `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add required donation fields to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add supported launch currencies to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add supported giving types to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add campaign/fund selection behavior to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add fee coverage behavior to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add anonymous donation behavior to `docs/project/PAYMENTS_PLAN.md`.
+- [x] Add donor message behavior to `docs/project/PAYMENTS_PLAN.md`.
 - [ ] Define Donorbox integration approach.
-- [ ] Define Flutterwave integration approach.
+- [x] Define Flutterwave integration approach.
 - [ ] Define LaunchGood campaign-link approach if used.
 - [ ] Define PayPal fallback approach if used.
-- [ ] Define Convex schema and data access requirements.
-- [ ] Define Clerk auth and admin access requirements.
+- [x] Define Convex schema and data access requirements.
+- [x] Define Clerk auth and admin access requirements.
 - [ ] Confirm Flutterwave sandbox setup.
-- [ ] Confirm Flutterwave redirect URLs.
-- [ ] Confirm Flutterwave webhook URLs.
-- [ ] Confirm payment status states: pending, paid, failed, cancelled, expired, duplicate webhook, invalid webhook.
+- [x] Confirm Flutterwave redirect URLs.
+- [x] Confirm Flutterwave webhook URLs.
+- [x] Confirm payment status states: pending, paid, failed, cancelled, expired, duplicate webhook, invalid webhook.
 - [ ] Approve or request changes on Yasar's donor journey notes with written feedback.
 - [ ] Approve or request changes on Khalid's navigation/content hierarchy notes with written feedback.
 - [ ] Complete first-pass PR reviews for every intern with at least one actionable comment each.
 
 ## Week 2: Payment Checkout Implementation
 
-- [ ] Implement or harden donation intent creation.
+- [x] Implement or harden donation intent creation.
 - [ ] Implement or harden Donorbox integration if selected.
-- [ ] Implement or harden Flutterwave integration if selected.
+- [x] Implement or harden Flutterwave integration if selected.
 - [ ] Implement or harden LaunchGood campaign links if selected.
 - [ ] Implement or harden PayPal fallback if selected.
-- [ ] Implement or harden Convex queries, mutations, actions, schema, and webhooks.
-- [ ] Implement or harden Clerk auth, staff sync, and admin access.
-- [ ] Ensure donation amounts are calculated and validated server-side.
-- [ ] Ensure campaign and fund IDs are validated server-side.
-- [ ] Ensure currency is validated server-side.
-- [ ] Ensure client-side values are never trusted for payment status or totals.
-- [ ] Implement or harden Flutterwave checkout redirect creation.
+- [x] Implement or harden Convex queries, mutations, actions, schema, and webhooks.
+- [x] Implement or harden Clerk auth, staff sync, and admin access.
+- [x] Ensure donation amounts are calculated and validated server-side.
+- [x] Ensure campaign and fund IDs are validated server-side.
+- [x] Ensure currency is validated server-side.
+- [x] Ensure client-side values are never trusted for payment status or totals.
+- [x] Implement or harden Flutterwave checkout redirect creation.
 - [ ] Implement clear failed payment state.
 - [ ] Implement clear cancelled payment state.
 - [ ] Implement clear expired payment state.
@@ -72,19 +72,19 @@ Primary ownership: all payment providers, Convex, Clerk, authentication, admin a
 
 ## Week 3: Webhooks, Reconciliation, and Receipts
 
-- [ ] Implement or harden Flutterwave webhook signature verification.
-- [ ] Reject invalid webhook signatures.
-- [ ] Handle duplicate webhook events without duplicate donations.
-- [ ] Validate webhook amount against the original donation intent.
-- [ ] Validate webhook currency against the original donation intent.
-- [ ] Handle unknown payment references safely.
-- [ ] Record payment events for traceability.
-- [ ] Convert successful payment intents into completed donations.
-- [ ] Ensure receipt creation works after successful donation.
-- [ ] Ensure receipt retry behavior does not duplicate donations.
-- [ ] Ensure audit logs capture payment-critical changes.
-- [ ] Ensure Convex data flows are validated server-side.
-- [ ] Ensure Clerk/admin access checks are validated server-side.
+- [x] Implement or harden Flutterwave webhook signature verification.
+- [x] Reject invalid webhook signatures.
+- [x] Handle duplicate webhook events without duplicate donations.
+- [x] Validate webhook amount against the original donation intent.
+- [x] Validate webhook currency against the original donation intent.
+- [x] Handle unknown payment references safely.
+- [x] Record payment events for traceability.
+- [x] Convert successful payment intents into completed donations.
+- [x] Ensure receipt creation works after successful donation.
+- [x] Ensure receipt retry behavior does not duplicate donations.
+- [x] Ensure audit logs capture payment-critical changes.
+- [x] Ensure Convex data flows are validated server-side.
+- [x] Ensure Clerk/admin access checks are validated server-side.
 - [ ] Test successful sandbox donation from checkout to receipt.
 - [ ] Test failed payment flow.
 - [ ] Test cancelled payment flow.
@@ -96,12 +96,12 @@ Primary ownership: all payment providers, Convex, Clerk, authentication, admin a
 - [ ] Close or merge all open PRs after final checklist validation.
 - [ ] Confirm public pages are complete.
 - [ ] Confirm donation checkout is complete.
-- [ ] Confirm webhook verification is complete.
-- [ ] Confirm receipt flow is complete.
-- [ ] Confirm admin access is protected.
-- [ ] Confirm donor data is not exposed publicly.
+- [x] Confirm webhook verification is complete.
+- [x] Confirm receipt flow is complete.
+- [x] Confirm admin access is protected.
+- [x] Confirm donor data is not exposed publicly.
 - [ ] Confirm environment variables are configured for production.
-- [ ] Confirm production secrets are not committed.
+- [x] Confirm production secrets are not committed.
 - [ ] Confirm payment provider remains in sandbox until final approval.
 - [ ] Confirm production webhook URL is configured.
 - [ ] Confirm production redirect URLs are configured.

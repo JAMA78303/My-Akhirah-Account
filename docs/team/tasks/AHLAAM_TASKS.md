@@ -5,25 +5,25 @@ Primary ownership: about page, policy pages, partner/team sections, reusable con
 
 ## Shared Product Contract
 
-- [ ] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
-- [ ] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
-- [ ] Point every donation CTA to the destination approved by Mikhail.
-- [ ] Do not change payment provider, Convex, Clerk/auth, or admin files.
-- [ ] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
+- [x] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
+- [x] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
+- [x] Point every donation CTA to the destination approved by Mikhail.
+- [x] Do not change payment provider, Convex, Clerk/auth, or admin files.
+- [x] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
 
 ## Setup Checklist
 
-- [ ] Read `README.md`.
-- [ ] Read `docs/CODEBASE_MAP.md`.
-- [ ] Pull the latest `main` branch before starting work.
-- [ ] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
+- [x] Read `README.md`.
+- [x] Read `docs/CODEBASE_MAP.md`.
+- [x] Pull the latest `main` branch before starting work.
+- [x] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
 - [ ] Confirm you can run `bun run build`.
-- [ ] Ask for review before changing shared card components.
+- [x] Ask for review before changing shared card components.
 
 ## Week 1: About and Policy Pages
 
-- [ ] Reuse layout/content patterns from `src/app/page.tsx` when building about/policy sections.
-- [ ] Reuse and extend existing components in `src/components/sections/` instead of creating duplicates.
+- [x] Reuse layout/content patterns from `src/app/page.tsx` when building about/policy sections.
+- [x] Reuse and extend existing components in `src/components/sections/` instead of creating duplicates.
 - [ ] Build `/about` with these sections: intro, mission, Africa focus, how we work, team, partners, and CTA to `/contact`.
 - [ ] Build `/privacy-policy` with readable section headings and placeholder content blocks marked `TODO: Mikhail copy`.
 - [ ] Build `/terms` with readable section headings and placeholder content blocks marked `TODO: Mikhail copy`.
@@ -51,14 +51,14 @@ Primary ownership: about page, policy pages, partner/team sections, reusable con
 
 ## Week 3: Card Polish and QA
 
-- [ ] Update `src/components/cards/BlogCard.tsx` to handle long titles/excerpts without layout break.
-- [ ] Update `src/components/cards/EventCard.tsx` to handle long titles/excerpts without layout break.
-- [ ] Update `src/components/cards/CampaignCard.tsx` to handle long titles/excerpts without layout break.
-- [ ] Add clear link/button labels for every card action.
-- [ ] Fix mobile readability issues for all three card types.
-- [ ] Fix desktop alignment issues for all three card types.
+- [x] Update `src/components/cards/BlogCard.tsx` to handle long titles/excerpts without layout break.
+- [x] Update `src/components/cards/EventCard.tsx` to handle long titles/excerpts without layout break.
+- [x] Update `src/components/cards/CampaignCard.tsx` to handle long titles/excerpts without layout break.
+- [x] Add clear link/button labels for every card action.
+- [x] Fix mobile readability issues for all three card types.
+- [x] Fix desktop alignment issues for all three card types.
 - [ ] Create `docs/team/tasks/qa-notes-ahlaam.md` with each remaining issue, page, screenshot reference, and owner.
-- [ ] Open a PR for card polish after fixing at least one confirmed card layout issue or attach `docs/team/tasks/qa-notes-ahlaam.md` if no card changes are needed.
+- [x] Open a PR for card polish after fixing at least one confirmed card layout issue or attach `docs/team/tasks/qa-notes-ahlaam.md` if no card changes are needed.
 
 ## Week 4: Final Responsive QA
 

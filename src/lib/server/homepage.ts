@@ -20,8 +20,8 @@ const fallbackHomepage: HomepagePayload = {
       title: "Why Participate in Collections?",
       description:
         "Your contributions, no matter how small, create ripples of change across communities. Every pound raised goes directly towards transforming lives and supporting those in need.",
-      ctaText: "Start Fundraising",
-      ctaHref: "/fundraise",
+      ctaText: "Explore campaigns",
+      ctaHref: "/campaigns",
       imageUrl: "/hero-bg.jpg",
       variant: "secondary",
     },

@@ -5,37 +5,37 @@ Primary ownership: blog/news pages, event pages, content search/filter UI, techn
 
 ## Shared Product Contract
 
-- [ ] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
-- [ ] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
-- [ ] Point every donation CTA to the destination approved by Mikhail.
-- [ ] Do not change payment provider, Convex, Clerk/auth, or admin files.
-- [ ] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
+- [x] Use the shared header/footer route set: `/`, `/about`, `/campaigns`, `/programmes`, `/blog`, `/events`, `/faq`, `/contact`, `/volunteer`, `/newsletter`.
+- [x] Use the existing brand colors, spacing, buttons, and card patterns instead of inventing a separate visual style.
+- [x] Point every donation CTA to the destination approved by Mikhail.
+- [x] Do not change payment provider, Convex, Clerk/auth, or admin files.
+- [x] Keep every new page mobile-first and readable at mobile, tablet, and desktop widths.
 
 ## Setup Checklist
 
-- [ ] Read `README.md`.
-- [ ] Read `docs/CODEBASE_MAP.md`.
-- [ ] Pull the latest `main` branch before starting work.
-- [ ] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
+- [x] Read `README.md`.
+- [x] Read `docs/CODEBASE_MAP.md`.
+- [x] Pull the latest `main` branch before starting work.
+- [x] Create a feature branch using `feature/<short-description>` or `fix/<short-description>`.
 - [ ] Confirm you can run `bun run build`.
-- [ ] Ask Mikhail before changing any data flow, Convex-related interface, admin permissions, payment provider flow, or Clerk/auth behavior.
+- [x] Ask Mikhail before changing any data flow, Convex-related interface, admin permissions, payment provider flow, or Clerk/auth behavior.
 
 ## Week 1: Blog and Event Page Structure
 
-- [ ] Update `src/components/cards/BlogCard.tsx` to support real title length, excerpt length, and date display.
-- [ ] Update `src/components/cards/EventCard.tsx` to support real event date/location display and long titles.
-- [ ] Use only Mikhail-approved public post/event fields (title, slug, excerpt, image, date, tags/category, location).
+- [x] Update `src/components/cards/BlogCard.tsx` to support real title length, excerpt length, and date display.
+- [x] Update `src/components/cards/EventCard.tsx` to support real event date/location display and long titles.
+- [x] Use only Mikhail-approved public post/event fields (title, slug, excerpt, image, date, tags/category, location).
 - [ ] Add blog/event metadata using the same title template and description style as `src/app/layout.tsx`.
-- [ ] Make blog/event heading hierarchy match the homepage pattern: one page `<h1>`, section `<h2>`, card/detail subheadings `<h3>`.
+- [x] Make blog/event heading hierarchy match the homepage pattern: one page `<h1>`, section `<h2>`, card/detail subheadings `<h3>`.
 - [ ] Build `/blog` page shell.
 - [ ] Build `/blog/[slug]` page shell.
 - [ ] Build `/events` page shell.
 - [ ] Build `/events/[slug]` page shell.
-- [ ] Use lowercase, hyphenated URL patterns for content slugs.
-- [ ] Ensure each page has one clear `<h1>`.
-- [ ] Ensure headings follow a logical `<h1>` to `<h2>` to `<h3>` order.
-- [ ] Add loading and empty states for blog and events.
-- [ ] Open a PR for blog and event page structure with heading/URL notes.
+- [x] Use lowercase, hyphenated URL patterns for content slugs.
+- [x] Ensure each page has one clear `<h1>`.
+- [x] Ensure headings follow a logical `<h1>` to `<h2>` to `<h3>` order.
+- [x] Add loading and empty states for blog and events.
+- [x] Open a PR for blog and event page structure with heading/URL notes.
 
 ## Week 2: Content Data and Filters
 

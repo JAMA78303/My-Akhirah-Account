@@ -2,35 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, FormEvent, useMemo, useEffect } from "react";
-import { mapSubmitError, validateNewsletterDraft } from "@/lib/validation/formsClient";
+import type { ReactNode } from "react";
+import NewsletterSubscribeForm from "@/components/forms/NewsletterSubscribeForm";
 
+/** Aligned with `docs/team/tasks/navigation-map.md` */
 const footerLinks = {
-    about: [
-        { href: "/about", label: "About us" },
-        { href: "/team", label: "Our team" },
-        { href: "/careers", label: "Careers" },
-        { href: "/contact", label: "Contact" },
-    ],
-    work: [
+    discover: [
         { href: "/campaigns", label: "Campaigns" },
         { href: "/programmes", label: "Programmes" },
+        { href: "/blog", label: "Blog" },
         { href: "/events", label: "Events" },
-        { href: "/blog", label: "News & stories" },
+        { href: "/faq", label: "FAQ" },
     ],
-    involved: [
-        { href: "/donate", label: "Donate" },
+    organisation: [
+        { href: "/about", label: "About us" },
+        { href: "/contact", label: "Contact" },
         { href: "/volunteer", label: "Volunteer" },
         { href: "/newsletter", label: "Newsletter" },
-        { href: "/fundraise", label: "Fundraise" },
-        { href: "/zakat", label: "Zakat" },
     ],
+    involved: [{ href: "/donate", label: "Donate" }],
     legal: [
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
         { href: "/faq", label: "FAQ" },
     ],
-};
+} as const;
+
+const transparencyTiles = [
+    { href: "/privacy", label: "Governance" },
+    { href: "/terms", label: "Annual reports" },
+    { href: "/faq", label: "Safeguarding" },
+] as const;
 
 const socialLinks = [
     { href: "https://facebook.com", label: "Facebook", icon: "facebook" },
@@ -39,75 +41,34 @@ const socialLinks = [
     { href: "https://youtube.com", label: "YouTube", icon: "youtube" },
 ];
 
+const footerColumns: { title: string; links: readonly { href: string; label: string }[] }[] = [
+    { title: "Discover", links: footerLinks.discover },
+    { title: "Organisation", links: footerLinks.organisation },
+    { title: "Get involved", links: footerLinks.involved },
+    { title: "Legal", links: footerLinks.legal },
+];
+
 export default function Footer() {
-    const [email, setEmail] = useState("");
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const [errorMessage, setErrorMessage] = useState("");
-    const startedAt = useMemo(() => Date.now().toString(), []);
-    const [honeypotArmed, setHoneypotArmed] = useState(false);
-    const [company, setCompany] = useState("");
-
-    useEffect(() => {
-        setHoneypotArmed(true);
-    }, []);
-
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        const validation = validateNewsletterDraft({ email });
-        if (validation.email) {
-            setStatus("error");
-            setErrorMessage(validation.email);
-            return;
-        }
-
-        setStatus("submitting");
-        setErrorMessage("");
-
-        try {
-            const formData = new FormData();
-            formData.set("email", email.trim());
-            formData.set("consentTextVersion", "v1");
-            formData.set("source", "footer");
-            formData.set("company", company);
-            formData.set("startedAt", startedAt);
-
-            const response = await fetch("/api/newsletter", {
-                method: "POST",
-                body: formData,
-            });
-            const body = await response.json().catch(() => ({}));
-            if (!response.ok) {
-                setStatus("error");
-                setErrorMessage(mapSubmitError(body));
-                return;
-            }
-            setStatus("success");
-            setEmail("");
-        } catch {
-            setStatus("error");
-            setErrorMessage("Unable to submit right now.");
-        }
-    };
-
     return (
         <footer className="bg-akhirah-teal-dark text-purity-white">
-            <div className="border-b border-white/10">
+            <div id="site-newsletter" className="border-b border-white/10 scroll-mt-24">
                 <div className="container-custom max-w-full py-10 sm:py-12 md:py-14">
                     <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16 items-start">
                         <div>
                             <p className="text-xs font-semibold uppercase tracking-wider text-eternal-gold mb-4">
                                 Transparency & trust
                             </p>
-                            <div className="grid grid-cols-3 gap-3 max-w-md">
-                                {["Governance", "Annual reports", "Safeguarding"].map((label) => (
-                                    <div
-                                        key={label}
-                                        className="aspect-[4/3] rounded-sm bg-white/5 border border-white/15 flex items-center justify-center text-center p-2"
+                            <div className="grid grid-cols-2 gap-3 max-w-md sm:grid-cols-3">
+                                {transparencyTiles.map((tile) => (
+                                    <Link
+                                        key={tile.href + tile.label}
+                                        href={tile.href}
+                                        className="aspect-[4/3] rounded-sm bg-white/5 border border-white/15 flex items-center justify-center text-center p-2 hover:bg-white/10 hover:border-eternal-gold/40 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eternal-gold"
                                     >
                                         <span className="text-[0.65rem] md:text-xs font-semibold text-white/80 leading-tight">
-                                            {label}
+                                            {tile.label}
                                         </span>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -116,70 +77,7 @@ export default function Footer() {
                             <p className="text-white/75 text-sm mb-5 max-w-md">
                                 Occasional updates on impact, events, and ways to give with intention.
                             </p>
-                            <form
-                                className="flex flex-col sm:flex-row gap-3 max-w-lg"
-                                onSubmit={handleSubmit}
-                                aria-label="Newsletter subscription form"
-                            >
-                                <div className="flex-1">
-                                    <label htmlFor="newsletter-email" className="sr-only">
-                                        Email address
-                                    </label>
-                                    <input
-                                        id="newsletter-email"
-                                        type="email"
-                                        className="min-h-11 w-full px-4 py-3 text-base rounded-sm text-account-black focus:outline-none focus:ring-2 focus:ring-eternal-gold"
-                                        required
-                                        autoComplete="email"
-                                        name="email"
-                                        maxLength={255}
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            if (status === "error") {
-                                                setStatus("idle");
-                                                setErrorMessage("");
-                                            }
-                                        }}
-                                        disabled={status === "submitting"}
-                                        aria-describedby={status === "error" ? "newsletter-error" : undefined}
-                                        aria-invalid={status === "error"}
-                                    />
-                                    {honeypotArmed ? (
-                                        <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-                                            <label htmlFor="footer-company">Company</label>
-                                            <input
-                                                id="footer-company"
-                                                name="company"
-                                                type="text"
-                                                autoComplete="off"
-                                                tabIndex={-1}
-                                                value={company}
-                                                onChange={(e) => setCompany(e.target.value)}
-                                            />
-                                        </div>
-                                    ) : null}
-                                    <input type="hidden" name="startedAt" value={startedAt} />
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary whitespace-nowrap font-bold"
-                                    disabled={status === "submitting"}
-                                    aria-busy={status === "submitting"}
-                                >
-                                    {status === "submitting" ? "Subscribing…" : "Subscribe"}
-                                </button>
-                            </form>
-                            {status === "success" && (
-                                <p className="mt-3 text-sm text-mercy-mint" role="status">
-                                    Thank you for subscribing.
-                                </p>
-                            )}
-                            {status === "error" && (
-                                <p id="newsletter-error" className="mt-3 text-sm text-red-300" role="alert">
-                                    {errorMessage}
-                                </p>
-                            )}
+                            <NewsletterSubscribeForm source="footer" />
                         </div>
                     </div>
                 </div>
@@ -187,8 +85,8 @@ export default function Footer() {
 
             <div className="py-10 sm:py-12 md:py-14">
                 <div className="container-custom max-w-full">
-                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-5 lg:gap-8">
-                        <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[14rem]">
+                    <div className="grid grid-cols-1 gap-10 mb-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:mb-12 lg:grid-cols-[minmax(0,1.15fr)_repeat(3,minmax(0,1fr))] lg:items-start lg:gap-8">
+                        <div className="sm:col-span-2 lg:col-span-1 lg:max-w-[16rem]">
                             <Link href="/" className="inline-block mb-4">
                                 <Image
                                     src="/Logo Png White@3x.png"
@@ -196,6 +94,7 @@ export default function Footer() {
                                     width={72}
                                     height={72}
                                     className="h-14 w-auto"
+                                    unoptimized
                                 />
                             </Link>
                             <p className="text-white/65 text-sm mb-5 leading-relaxed">
@@ -208,7 +107,7 @@ export default function Footer() {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center hover:bg-eternal-gold hover:text-account-black transition-colors"
+                                        className="h-11 w-11 rounded-sm bg-white/10 flex items-center justify-center hover:bg-eternal-gold hover:text-account-black transition-colors"
                                         aria-label={`${social.label} (opens in new tab)`}
                                     >
                                         <SocialIcon icon={social.icon} />
@@ -217,77 +116,25 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                About
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.about.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                What we do
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.work.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Get involved
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.involved.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
-                                Legal
-                            </h4>
-                            <ul className="space-y-2.5">
-                                {footerLinks.legal.map((link) => (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white text-sm transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {footerColumns.map((column) => (
+                            <div key={column.title}>
+                                <h4 className="font-bold mb-4 text-sm uppercase tracking-wide text-eternal-gold/95">
+                                    {column.title}
+                                </h4>
+                                <ul className="space-y-1.5">
+                                    {column.links.map((link) => (
+                                        <li key={`${column.title}-${link.href}-${link.label}`}>
+                                            <Link
+                                                href={link.href}
+                                                className="flex min-h-11 items-center text-white/70 hover:text-white text-sm transition-colors"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="pt-8 border-t border-white/15 text-center text-xs md:text-sm text-white/50">
@@ -300,7 +147,7 @@ export default function Footer() {
 }
 
 function SocialIcon({ icon }: { icon: string }) {
-    const icons: Record<string, React.ReactNode> = {
+    const icons: Record<string, ReactNode> = {
         facebook: (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />

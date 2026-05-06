@@ -70,8 +70,8 @@ export default function Hero({
     subtitle,
     ctaText = "Give Zakat now",
     ctaHref = "/donate",
-    secondaryCtaText = "Zakat calculator",
-    secondaryCtaHref = "/zakat",
+    secondaryCtaText = "Giving & Zakat FAQs",
+    secondaryCtaHref = "/faq",
     backgroundImage = "/hero-bg.jpg",
     showSubtitle = false,
 }: HeroProps) {

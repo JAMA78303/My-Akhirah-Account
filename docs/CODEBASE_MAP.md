@@ -1,5 +1,5 @@
 ---
-last_mapped: 2026-04-25T00:00:00Z
+last_mapped: 2026-05-05T00:00:00Z
 ---
 
 # Codebase Map
@@ -20,6 +20,11 @@ My-Akhirah-Account/
 │   │   ├── page.tsx                  # Homepage composition (server component)
 │   │   ├── globals.css               # Global styles
 │   │   ├── favicon.ico
+│   │   ├── donate/                   # Donation page
+│   │   │   └── page.tsx
+│   │   ├── campaigns/                # Campaign listing + detail
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/page.tsx
 │   │   └── api/                      # Route handlers for public writes
 │   │       ├── contact/              # Contact form submission
 │   │       ├── donations/checkout/   # Donation checkout flow
@@ -95,7 +100,16 @@ My-Akhirah-Account/
 │   └── Logo Png White@3x.png
 ├── docs/
 │   ├── CODEBASE_MAP.md               # This file
-│   └── PROMPT.txt
+│   ├── DESIGN.md                     # Design system & UI conventions
+│   ├── README.md                     # Docs index
+│   ├── onboarding/                   # Onboarding guides
+│   │   └── INTERN_SETUP_AND_GIT.md
+│   ├── project/                      # Project planning
+│   │   └── DELIVERY_PLAN.md
+│   ├── team/                         # Team coordination
+│   │   ├── WORKING_AGREEMENTS.md
+│   │   └── tasks/                    # Per-team-member task tracking
+│   └── review artifacts (PR6_REVIEW_BLOCKERS.txt, review-pr-5-comment.txt, etc.)
 ├── package.json                      # Dependencies: next, react, convex, tailwind
 ├── next.config.mjs                   # Next.js config (strict mode)
 ├── tailwind.config.js                # Tailwind configuration
@@ -161,6 +175,6 @@ My-Akhirah-Account/
 ## Known Risks
 
 - **Mock data fallback**: `homepage.ts` silently falls back to `mockData.ts` on Convex errors — production should alert on fallback usage.
-- **No route diversity yet**: Only `page.tsx` exists as a page; `/blog`, `/campaigns`, `/events`, `/donate`, `/about` referenced in hrefs are not yet implemented.
+- **Partial route coverage**: `/donate` and `/campaigns` (including `[slug]`) are implemented. `/blog`, `/events`, `/about`, and other href targets are not yet implemented.
 - **Non-pristine worktree**: Active development in progress; avoid broad refactors outside backend and homepage data integration.
 - **Generated files**: `convex/_generated/` is auto-generated — do not hand-edit.
