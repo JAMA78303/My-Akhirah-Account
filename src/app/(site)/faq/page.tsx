@@ -112,42 +112,63 @@ export default function FaqPage() {
 
             <section className="section bg-purity-white">
                 <div className="container-custom">
+                    <nav
+                        aria-label="Jump to FAQ sections"
+                        className="mb-8 rounded-sm border border-akhirah-teal/15 bg-mercy-mint/30 p-3 sm:p-4"
+                    >
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-akhirah-teal">
+                            Jump to a topic
+                        </p>
+                        <ul className="flex flex-wrap gap-2 sm:gap-2.5">
+                            {faqSections.map((section) => (
+                                <li key={section.id}>
+                                    <Link
+                                        href={`#${section.id}`}
+                                        className="inline-flex min-h-11 items-center rounded-sm border border-akhirah-teal/20 bg-purity-white px-3 py-2 text-sm font-semibold text-akhirah-teal transition-colors hover:border-akhirah-teal/40 hover:bg-mercy-mint/50"
+                                    >
+                                        {section.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+
                     <div className="grid grid-cols-1 gap-6 lg:gap-8">
                         {faqSections.map((section, index) => (
                             <article
                                 key={section.id}
                                 id={section.id}
-                                className={`rounded-sm border border-akhirah-teal/15 p-5 sm:p-6 md:p-8 ${
+                                className={`scroll-mt-28 rounded-sm border border-akhirah-teal/15 p-5 sm:p-6 md:p-8 ${
                                     index % 2 === 1 ? "bg-mercy-mint/40" : "bg-purity-white"
                                 }`}
                             >
                                 <h2 className="text-2xl sm:text-3xl font-bold text-akhirah-teal text-balance break-words mb-2">
                                     {section.title}
                                 </h2>
-                                <p className="text-account-black/75 text-sm sm:text-base mb-6">{section.intro}</p>
+                                <p className="mb-6 break-words text-sm text-account-black/75 sm:text-base">{section.intro}</p>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                                <div className="grid min-w-0 grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
                                     {section.items.map((item) => (
                                         <details
                                             key={item.question}
-                                            className="group rounded-sm border border-akhirah-teal/15 bg-purity-white p-4 sm:p-5"
+                                            className="group min-w-0 overflow-hidden rounded-sm border border-akhirah-teal/15 bg-purity-white p-4 sm:p-5"
                                         >
-                                            <summary className="min-h-11 cursor-pointer list-none pr-7 text-base sm:text-lg leading-snug font-semibold text-account-black break-words relative">
-                                                {item.question}
+                                            <summary className="flex min-h-11 cursor-pointer list-none items-start gap-3 text-base font-semibold leading-snug text-account-black sm:text-lg">
+                                                <span className="min-w-0 flex-1 break-words">{item.question}</span>
                                                 <span
-                                                    className="absolute right-0 top-0 text-akhirah-teal/70 group-open:hidden"
+                                                    className="shrink-0 pt-0.5 text-lg leading-none text-akhirah-teal/70 group-open:hidden"
                                                     aria-hidden
                                                 >
                                                     +
                                                 </span>
                                                 <span
-                                                    className="absolute right-0 top-0 hidden text-akhirah-teal/70 group-open:inline"
+                                                    className="hidden shrink-0 pt-0.5 text-lg leading-none text-akhirah-teal/70 group-open:inline"
                                                     aria-hidden
                                                 >
                                                     −
                                                 </span>
                                             </summary>
-                                            <p className="mt-3 text-account-black/80 text-sm sm:text-base leading-relaxed">
+                                            <p className="mt-3 max-w-full break-words text-sm leading-relaxed text-account-black/80 sm:text-base">
                                                 {item.answer}
                                             </p>
                                         </details>
@@ -159,22 +180,23 @@ export default function FaqPage() {
                 </div>
             </section>
 
-            <section className="section bg-akhirah-teal">
+            <section className="section border-t border-white/10 bg-akhirah-teal">
                 <div className="container-custom">
-                    <div className="max-w-4xl rounded-sm border border-white/15 bg-white/5 p-5 sm:p-6 md:p-8">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-purity-white mb-3">
+                    <div className="max-w-4xl rounded-sm border border-white/15 bg-white/5 p-6 sm:p-7 md:p-8">
+                        <h2 className="mb-3 text-2xl font-bold text-purity-white sm:text-3xl">
                             Trust and safeguarding support
                         </h2>
-                        <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-6">
+                        <p className="mb-6 text-sm leading-relaxed text-white/85 sm:text-base">
                             We are committed to responsible stewardship, clear accountability, and safe reporting routes
                             for every supporter, volunteer, and beneficiary.
                         </p>
-                        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                             <Link
-                                href="/safeguarding"
-                                className="inline-flex min-h-11 items-center justify-center rounded-sm border border-white/30 px-4 py-2 text-purity-white hover:text-eternal-gold hover:border-eternal-gold transition-colors"
+                                href="/faq#transparency"
+                                title="Opens Transparency FAQ until /safeguarding ships"
+                                className="inline-flex min-h-11 items-center justify-center rounded-sm border border-white/30 px-4 py-2 text-purity-white transition-colors hover:border-eternal-gold hover:text-eternal-gold"
                             >
-                                Safeguarding Policy
+                                Safeguarding policy
                             </Link>
                             <Link
                                 href="/contact"
